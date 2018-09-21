@@ -1,0 +1,6 @@
+{
+  "rulesDirectory": "./build",
+  "rules": {
+    "oursky-no-inline-function-children": true
+  }
+}
