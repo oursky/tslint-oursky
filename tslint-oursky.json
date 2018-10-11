@@ -51,7 +51,6 @@
     "prefer-object-spread": true,
     "radix": true,
     "restrict-plus-operands": true,
-    "strict-type-predicates": true,
     "unified-signatures": true,
     "use-default-type-parameter": true,
     "use-isnan": true
