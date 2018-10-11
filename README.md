@@ -41,7 +41,7 @@ For example,
 ```
 
 The above configuration bans `Text` and `Image` from `react-native`,
-`Component` from "react".
+`Component` from `react`.
 
 ### oursky-no-inline-function-children
 
