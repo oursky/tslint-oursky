@@ -48,3 +48,19 @@ The above configuration bans `Text` and `Image` from `react-native`,
 This rule disallows inline function as JSX children.
 
 This rule is enabled by default.
+
+### oursky-no-enum
+
+This rule disallows the usage of enum.
+
+The rationale of banning enum is that enum is not a EMCAScript language feature.
+If you use this in your library, you need to be aware of what it compiles to and tell that to the users of your library.
+Instead of using enum, use union type to represent an enumeration.
+If you enable the strictest compiler options and use union type,
+you can have exhaustive switch statement.
+
+[Example Playground](https://www.typescriptlang.org/play/index.html#src=type%20Color%20%3D%20%22red%22%20%7C%20%22blue%22%20%7C%20%22green%22%3B%0D%0A%0D%0A%0D%0Afunction%20foobar(c%3A%20Color)%3A%20string%20%7B%0D%0A%20%20%20%20switch%20(c)%20%7B%0D%0A%20%20%20%20%20%20%20%20case%20%22red%22%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20c%3B%0D%0A%20%20%20%20%20%20%20%20case%20%22blue%22%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20c%3B%0D%0A%20%20%20%20%20%20%20%20%2F%2F%20case%20%22green%22%3A%0D%0A%20%20%20%20%20%20%20%20%2F%2F%20%20%20%20%20return%20c%3B%0D%0A%20%20%20%20%7D%0D%0A%7D%0D%0A%0D%0A)
+
+You have to manually enable strictness options because the link does not remember selected options.
+
+This rule is enabled by default.

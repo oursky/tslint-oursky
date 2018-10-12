@@ -8,7 +8,8 @@
     "build"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "tslint --project test/tsconfig.json --config test/tslint.json --format verbose"
   },
   "devDependencies": {
     "@types/node": "^10.10.1",

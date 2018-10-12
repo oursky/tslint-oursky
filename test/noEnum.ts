@@ -1,0 +1,4 @@
+enum Foobar {
+  A,
+  B
+}

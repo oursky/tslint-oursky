@@ -1,0 +1,10 @@
+{
+  "rulesDirectory": "../build",
+  "rules": {
+    "oursky-no-inline-function-children": true,
+    "oursky-no-enum": true,
+    "oursky-ban-imports": [true,
+      ["querystring", ["escape"]]
+    ]
+  }
+}
