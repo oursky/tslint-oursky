@@ -10,6 +10,7 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write --list-different './src/**/*.ts'",
+    "pretest": "yarn build",
     "test": "tslint --project test/tsconfig.json --config test/tslint.json --format verbose"
   },
   "devDependencies": {

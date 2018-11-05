@@ -5,6 +5,7 @@
     "oursky-no-enum": true,
     "oursky-ban-imports": [true,
       ["querystring", ["escape"]]
-    ]
+    ],
+    "oursky-no-static-literal": true
   }
 }

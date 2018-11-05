@@ -64,3 +64,11 @@ you can have exhaustive switch statement.
 You have to manually enable strictness options because the link does not remember selected options.
 
 This rule is enabled by default.
+
+### oursky-no-static-literal
+
+This rule disallows static non-primitive literals in JSX.
+
+This rationale is that static non-primitive literals break React.PureComponent or React.pure
+
+This rule is enabled by default.
