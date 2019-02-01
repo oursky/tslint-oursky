@@ -45,32 +45,59 @@ function walk(ctx: Lint.WalkContext<Option[]>) {
       const { moduleSpecifier, importClause } = node;
       if (ts.isStringLiteral(moduleSpecifier) && importClause != null) {
         const modulePath = moduleSpecifier.text;
-        const { namedBindings } = importClause;
         const option = optionByModuleName[modulePath];
-        if (
-          option != null &&
-          namedBindings != null &&
-          namedBindings.kind === ts.SyntaxKind.NamedImports
-        ) {
-          const { elements } = namedBindings;
-          for (const e of elements) {
-            let importedName = "";
-            if (e.propertyName != null) {
-              // For case of
-              // import { a as b } from "m";
-              importedName = e.propertyName.escapedText as string;
-            } else {
-              // For case of
-              // import { a } from "m";
-              importedName = e.name.escapedText as string;
-            }
-
-            const idx = option.bindings.indexOf(importedName);
+        const { name, namedBindings } = importClause;
+        if (option != null) {
+          // Default import
+          // import a from "m";
+          // In this case, name != null
+          if (name != null) {
+            const idx = option.bindings.indexOf("default");
             if (idx >= 0) {
               ctx.addFailureAtNode(
-                e,
-                Rule.FAILURE_STRING_FACTORY(modulePath, importedName)
+                name,
+                Rule.FAILURE_STRING_FACTORY(modulePath, "default")
               );
+            }
+          }
+          if (namedBindings != null) {
+            // Named import
+            // import { a } from "m";
+            // In this case, namedBindings != null && namedBindings.kind === NamedImports
+            if (namedBindings.kind === ts.SyntaxKind.NamedImports) {
+              const { elements } = namedBindings;
+              for (const e of elements) {
+                let importedName = "";
+                if (e.propertyName != null) {
+                  // For case of
+                  // import { a as b } from "m";
+                  importedName = e.propertyName.escapedText as string;
+                } else {
+                  // For case of
+                  // import { a } from "m";
+                  importedName = e.name.escapedText as string;
+                }
+
+                const idx = option.bindings.indexOf(importedName);
+                if (idx >= 0) {
+                  ctx.addFailureAtNode(
+                    e,
+                    Rule.FAILURE_STRING_FACTORY(modulePath, importedName)
+                  );
+                }
+              }
+            }
+            if (namedBindings.kind === ts.SyntaxKind.NamespaceImport) {
+              // Namespace import
+              // import * as a from "m";
+              // In this case, namedBindings != null && namedBindings.kind === NamespaceImport
+              const idx = option.bindings.indexOf("*");
+              if (idx >= 0) {
+                ctx.addFailureAtNode(
+                  namedBindings,
+                  Rule.FAILURE_STRING_FACTORY(modulePath, "*")
+                );
+              }
             }
           }
         }

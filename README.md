@@ -17,7 +17,7 @@ The included rules are as of tslint@v5.11.0
     "@oursky/tslint-oursky"
   ],
   "rules": {
-    "oursky-ban-imports": [true, ["react-native", ["Text", "Image"]]]
+    "oursky-ban-imports": [true, ["react-native", ["Text", "Image", "*", "default"]]]
   }
 }
 ```
@@ -26,7 +26,11 @@ The included rules are as of tslint@v5.11.0
 
 ### oursky-ban-imports
 
-This rule allows you to ban named imports from specific modules.
+This rule allows you to ban imports from specific modules.
+
+If you want to ban namespace import `import * as a from "m";`, use `*`.
+
+If you want to ban default import `import a from "m";`, use `default`.
 
 This rule is not enabled by default because we do not know what you
 want to ban.
@@ -35,8 +39,8 @@ For example,
 
 ```
 "oursky-ban-imports": [true,
-  ["react-native", ["Text", "Image"]],
-  ["react", ["Component"]]
+  ["react-native", ["Text", "Image", "*", "default"]],
+  ["react", ["Component", "*", "default"]]
 ]
 ```
 
