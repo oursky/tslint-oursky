@@ -54,7 +54,17 @@ function walk(ctx: Lint.WalkContext<Option[]>) {
         ) {
           const { elements } = namedBindings;
           for (const e of elements) {
-            const importedName = e.name.escapedText as string;
+            let importedName = "";
+            if (e.propertyName != null) {
+              // For case of
+              // import { a as b } from "m";
+              importedName = e.propertyName.escapedText as string;
+            } else {
+              // For case of
+              // import { a } from "m";
+              importedName = e.name.escapedText as string;
+            }
+
             const idx = option.bindings.indexOf(importedName);
             if (idx >= 0) {
               ctx.addFailureAtNode(
