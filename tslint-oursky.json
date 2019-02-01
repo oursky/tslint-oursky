@@ -50,6 +50,12 @@
     "no-unused-expression": true,
     "no-var-keyword": true,
     "no-void-expression": true,
+    "ordered-imports": [true, {
+      "import-sources-order": "lowercase-last",
+      "grouped-imports": true,
+      "named-imports-order": "lowercase-last",
+      "module-source-path": "full"
+    }],
     "prefer-const": true,
     "prefer-for-of": true,
     "prefer-object-spread": true,
