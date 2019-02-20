@@ -2,7 +2,6 @@
   "rulesDirectory": "./build",
   "rules": {
     "oursky-no-inline-function-children": true,
-    "oursky-no-enum": true,
     "oursky-no-static-literal": true,
     "adjacent-overload-signatures": true,
     "await-promise": true,
