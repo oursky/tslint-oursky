@@ -53,7 +53,6 @@
     "prefer-object-spread": true,
     "prefer-while": true,
     "radix": true,
-    "restrict-plus-operands": true,
     "unified-signatures": true,
     "use-default-type-parameter": true,
     "use-isnan": true
