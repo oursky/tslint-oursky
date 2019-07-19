@@ -1,2 +1,12 @@
 build/
 node_modules/
+
+.DS_Store
+*.pem
+*.cer
+*.cert
+*.p12
+*.pfx
+*.key
+.env
+docker-compose.override.yml
